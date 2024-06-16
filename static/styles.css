@@ -1,0 +1,252 @@
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #EEE2DC;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0;
+    padding-bottom: 60px; 
+}
+
+.container {
+    text-align: center;
+    background-color: #EDC7B7;
+    padding: 5%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 800px;
+    margin: 20px 0;
+}
+
+h1 {
+    margin-bottom: 3rem;
+    color: #AC3B61;
+    font-family: 'Arial Black', Gadget, sans-serif;
+    font-size: 2.3em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    transition: color 0.3s ease-in-out;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+button {
+    padding: 1rem 2rem;
+    font-size: 1.4rem;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 0.5rem;
+}
+
+#extractive-button {
+    background-color: #A64AC9;
+}
+
+#extractive-button:hover {
+    background-color: #7b0fa6;
+}
+
+#abstractive-button {
+    background-color: #E64398;
+}
+
+#abstractive-button:hover {
+    background-color: #d01375;
+}
+
+#extractive-form,
+#abstractive-form {
+    max-width: 90%;
+    margin: 20px auto;
+    padding: 3rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#extractive-form label,
+#abstractive-form label {
+    font-weight: bold;
+}
+
+#extractive-form textarea,
+#abstractive-form textarea {
+    width: 100%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 1rem;
+    height: 150px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+#extractive-form input[type=number],
+#abstractive-form input[type=number] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+#extractive-form input[type=submit],
+#abstractive-form input[type=submit] {
+    background-color: #007BFF;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+#extractive-form input[type=submit]:hover,
+#abstractive-form input[type=submit]:hover {
+    background-color: #0056b3;
+}
+
+#extractive-form input[type=submit]:focus,
+#abstractive-form input[type=submit]:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.8);
+}
+
+#extractive-summary-result,
+#abstractive-summary-result {
+    display: none; 
+    max-width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.summary-box {
+    font-family: Arial, sans-serif;
+    color: #333;
+    line-height: 1.5;
+}
+
+.summary-box h3 {
+    margin-top: 0;
+    font-size: 1.5em;
+    color: #007BFF;
+}
+
+.summary-box p {
+    margin: 0;
+    font-size: 1em;
+}
+
+
+footer {
+    background-color: #f1f1f1;
+    border-top: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+}
+
+footer p {
+    margin: 0;
+    color: #333;
+}
+
+footer .copyright {
+    font-weight: bold;
+}
+
+footer .social-icons {
+    display: flex;
+    align-items: center;
+    
+}
+
+footer .social-icon {
+    font-size: 20px;
+    margin: 0px 1px;
+    color: #333;
+    padding-right: 25px;
+    text-decoration: none;  
+}
+
+footer .social-icon:hover {
+    opacity: 0.7;
+}
+
+
+
+
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2em;
+        margin-bottom: 2rem;
+    }
+
+    button {
+        font-size: 1.2rem;
+        padding: 10px 20px;
+    }
+
+    #extractive-form,
+    #abstractive-form {
+        padding: 2rem;
+    }
+
+    #extractive-form input[type=submit],
+    #abstractive-form input[type=submit] {
+        font-size: 0.9rem;
+        padding: 10px 15px;
+    }
+
+    .button-container {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8em;
+    }
+
+    button {
+        font-size: 1rem;
+        padding: 8px 16px;
+    }
+
+    #extractive-form,
+    #abstractive-form {
+        padding: 1.5rem;
+    }
+
+    #extractive-form input[type=submit],
+    #abstractive-form input[type=submit] {
+        font-size: 0.8rem;
+        padding: 8px 12px;
+    }
+}

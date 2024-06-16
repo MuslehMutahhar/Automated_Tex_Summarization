@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automated Summary</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to <br>  Automated Text Summarization</h1>
+        
+        
+        <div class="button-container">
+            <button id="extractive-button" onclick="showExtractiveSummary()">Extractive Summary</button>
+            <button id="abstractive-button" onclick="showAbstractiveSummary()">Abstractive Summary</button>
+        </div>
+        
+        
+        <div id="extractive-summary-section" style="display: none;">
+            <h2>Extractive Summary</h2>
+            <form id="extractive-form" onsubmit="submitExtractiveForm(event)">
+                <label for="text">Enter Text:</label><br>
+                <textarea id="extractive-text" name="text" rows="10" cols="50"></textarea><br><br>
+                <label for="num_sentences">Number of Sentences:</label>
+                <input type="number" id="num_sentences" name="num_sentences"><br><br>
+                <input type="submit" value="Submit">
+            </form>
+            <div id="extractive-summary-result" class="summary-box" ></div>
+        </div>
+        
+        
+        <div id="abstractive-summary-section" style="display: none;">
+            <h2>Abstractive Summary</h2>
+            <form id="abstractive-form" onsubmit="submitAbstractiveForm(event)">
+                <label for="text">Enter Text:</label><br>
+                <textarea id="abstractive-text" name="text" rows="10" cols="50"></textarea><br><br>
+                <label for="max_length">Maximum Length : (should be less than the input text) </label>
+                <input type="number" id="max_length" name="max_length" value="150"><br><br>
+                <label for="min_length">Minimum Length:</label>
+                <input type="number" id="min_length" name="min_length" value="10"><br><br>
+                <input type="submit" value="Submit">
+            </form>
+            <div id="abstractive-summary-result" class="summary-box" ></div>
+        </div>
+        
+        
+    </div>
+
+  
+    <script>
+        function showExtractiveSummary() {
+            document.getElementById('extractive-summary-section').style.display = 'block';
+            document.getElementById('abstractive-summary-section').style.display = 'none';
+            document.getElementById('extractive-summary-result').style.display = 'none'; // Hide previous result
+        }
+
+        function showAbstractiveSummary() {
+            document.getElementById('extractive-summary-section').style.display = 'none';
+            document.getElementById('abstractive-summary-section').style.display = 'block';
+            document.getElementById('abstractive-summary-result').style.display = 'none'; // Hide previous result
+        }
+
+        function submitExtractiveForm(event) {
+            event.preventDefault();
+            const formData = new FormData(document.getElementById('extractive-form'));
+            
+            fetch('/extractive_summary', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                const resultDiv = document.getElementById('extractive-summary-result');
+                resultDiv.innerHTML = `<p><strong>Extractive Summary:</strong></p><p>${data.summary}</p>`;
+                resultDiv.style.display = 'block'; // Show result
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        function submitAbstractiveForm(event) {
+        event.preventDefault();
+        const formData = new FormData(document.getElementById('abstractive-form'));
+        
+        fetch('/abstractive_summary', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                console.error('Error:', data.error);
+            } else {
+                const resultDiv = document.getElementById('abstractive-summary-result');
+                resultDiv.innerHTML = `<p><strong>Abstractive Summary:</strong></p><p>${data.summary}</p>`;
+                resultDiv.style.display = 'block'; // Show result
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+       
+    </script>
+    
+    
+    <footer>
+        <p>&copy; 2024 - <span class="copyright">Mohd Muslehuddin</span></p>
+        <p>
+            <a href="https://www.linkedin.com/in/mohd-musleh-uddin-b42a282a6/" class="social-icon"  target="_blank">
+                <i class="fab fa-linkedin social-icon"></i>
+            </a>
+            <a href="https://github.com/muslehmutahhar"  class="social-icon" target="_blank">
+                <i class="fab fa-github social-icon"></i>
+            </a>
+        </p>
+    </footer>
+    
+</body>
+</html>
