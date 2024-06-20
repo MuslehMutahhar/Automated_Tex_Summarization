@@ -14,7 +14,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 RUN python -m spacy download en_core_web_sm
 
 # Expose port 5000 to allow communication to/from server
-EXPOSE 5000
+EXPOSE 10000
 
 # Run api/index.py when the container launches
 CMD ["python", "api/index.py"]

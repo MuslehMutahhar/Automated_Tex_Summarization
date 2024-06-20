@@ -148,8 +148,9 @@ def abstractive_summary():
         logging.error(f"Error in abstractive summary: {str(e)}")
         return jsonify({'error': str(e)}), 500
 
-# if __name__ == '__main__':
-#     logging.basicConfig(level=logging.INFO)
-#     from waitress import serve
-#     serve(app, host='0.0.0.0', port=5000)
+if __name__ == '__main__':
+    logging.basicConfig(level=logging.INFO)
+    from waitress import serve
+    port = int(os.getenv("PORT", 10000))
+    serve(app, host='0.0.0.0', port=port)
 
